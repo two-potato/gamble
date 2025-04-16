@@ -7,5 +7,6 @@ class RegisteredUserAdmin(admin.ModelAdmin):
 
     list_display = (
         "telegram_id",
+        "telegram_username",
         "lucky_username",
     )

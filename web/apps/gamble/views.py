@@ -7,7 +7,6 @@ from .models import RegisteredUser
 from rest_framework import generics
 from .serializers import RegisteredUserSerializer
 from .forms import RegistrationForm
-import random
 
 
 class RegisterView(View):
@@ -25,6 +24,12 @@ class RegisterView(View):
                 return JsonResponse(
                     {"status": "error", "message": "Invalid Telegram ID"}
                 )
+            telegram_username = request.POST.get("telegram_username")
+            # telegram_username = "John"
+            if not telegram_username:
+                return JsonResponse(
+                    {"status": "error", "message": "Invalid Telegram Username"}
+                )
 
             lucky_username = form.cleaned_data["lucky_username"]
 
@@ -34,7 +39,9 @@ class RegisterView(View):
                 )
 
             RegisteredUser.objects.create(
-                telegram_id=telegram_id, lucky_username=lucky_username
+                telegram_id=telegram_id,
+                telegram_username=telegram_username,
+                lucky_username=lucky_username,
             )
             return JsonResponse({"status": "success"})
         return render(request, self.template_name, {"form": form})

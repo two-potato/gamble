@@ -22,6 +22,7 @@
       </div>
       <!-- Скрытое поле для передачи telegram_id -->
       <input type="hidden" name="telegram_id" id="telegram_id">
+      <input type="hidden" id="telegram_username" name="telegram_username">
       <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
     </form>
   </div>
@@ -29,8 +30,23 @@
   <!-- Заполнение telegram_id, если данные доступны -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
-        document.getElementById("telegram_id").value = Telegram.WebApp.initDataUnsafe.user.id;
+      if (
+        Telegram.WebApp &&
+        Telegram.WebApp.initDataUnsafe &&
+        Telegram.WebApp.initDataUnsafe.user
+      ) {
+        const user = Telegram.WebApp.initDataUnsafe.user;
+
+        const telegramIdInput = document.getElementById("telegram_id");
+        const telegramUsernameInput = document.getElementById("telegram_username");
+
+        if (telegramIdInput) {
+          telegramIdInput.value = user.id;
+        }
+
+        if (telegramUsernameInput && user.username) {
+          telegramUsernameInput.value = user.username;
+        }
       }
     });
   </script>

@@ -8,7 +8,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 TOKEN = "7374201034:AAHZ48nTvc1n4I02veri2ry-mkuFcnd2FFM"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-API_LINK = "https://19a7-62-60-152-151.ngrok-free.app"
+API_LINK = "https://ee7e-62-60-152-151.ngrok-free.app"
 
 
 async def get_random_user():
@@ -57,7 +57,7 @@ async def start_handler(message: types.Message):
     )
     user_data = {
         "telegram_id": message.from_user.id,
-        # "telegram_username": message.from_user.username,
+        "telegram_username": message.from_user.username,
         # Можно добавить дополнительные поля, например:
         # "first_name": message.from_user.first_name,
         # "last_name": message.from_user.last_name,
@@ -65,14 +65,15 @@ async def start_handler(message: types.Message):
     async with aiohttp.ClientSession() as session:
         try:
             async with session.post(
-                f"{API_LINK}/register/",
-                json=user_data
+                f"{API_LINK}/register/", json=user_data
             ) as response:
                 if response.status == 200:
                     result = await response.json()
                     print("Данные пользователя успешно отправлены на API:", result)
                 else:
-                    print("Ошибка при отправке данных пользователя. Код:", response.status)
+                    print(
+                        "Ошибка при отправке данных пользователя. Код:", response.status
+                    )
         except Exception as e:
             print("Ошибка при POST запросе данных пользователя:", e)
 
