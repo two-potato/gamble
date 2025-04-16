@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  web:
+    build: ./web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./webapp:/code
+    ports:
+      - "8000:8000"
+
+
+  bot:
+    build: ./bot
+    # command: python main.py
+    volumes:
+      - ./bot:/code
+
+
