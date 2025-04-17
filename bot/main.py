@@ -36,7 +36,7 @@ async def gamble_handler(message: types.Message):
     """
     username = await get_random_user()
     if username:
-        await message.answer(f"Случайный пользователь: {username}")
+        await message.answer(f"Победитель: {username}")
     else:
         await message.answer("Пока нет зарегистрированных пользователей.")
 
