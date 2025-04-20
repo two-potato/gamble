@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="card shadow-sm rounded-lg">
+  <div class="card-body p-3 p-md-4 text-center">
+    <!-- Заголовок -->
+    <div class="mb-4">
+      <h2 class="fs-2 fw-bold mb-2">🎉 Регистрация успешна!</h2>
+      <p class="text-muted">Спасибо за регистрацию вашего ресторана.</p>
+    </div>
+    <div class="mb-4">
+      Теперь вы можете присоединиться к нашему официальному Telegram‑чату для владельцев и управляющих
+      ресторанов,
+      чтобы получать полезные советы и консультации в реальном времени.
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <button type="button" class="btn btn-success btn-lg py-3" id="openGroupBtn">
+        🚀 Перейти в Telegram‑группу
+      </button>
+    </div <!-- Примечание -->
+    <p class="small text-muted mb-0">
+      Если кнопка не работает, вы также можете перейти по ссылке:
+      <a href="https://t.me/test_fields" target="_blank" class="text-decoration-none">
+        t.me/test_fields
+      </a>
+    </p>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Открываем ссылку через Telegram WebApp API, если доступно
+    const btn = document.getElementById("openGroupBtn");
+    btn.addEventListener("click", function () {
+      const url = "https://t.me/test_fields";
+      if (Telegram.WebApp && Telegram.WebApp.openLink) {
+        Telegram.WebApp.openLink(url);
+      } else {
+        window.open(url, "_blank");
+      }
+    });
+  });
+</script>
+{% endblock content %}

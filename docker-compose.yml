@@ -6,13 +6,16 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./webapp:/code
+    env_file:
+      - ./web/.env
     ports:
       - "8000:8000"
 
 
   bot:
     build: ./bot
-    # command: python main.py
+    env_file:
+      - ./bot/.env
     volumes:
       - ./bot:/code
 
