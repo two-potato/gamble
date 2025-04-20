@@ -5,14 +5,21 @@
   {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Регистрация</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="description" content="Gamble Bot - бот для регистрации участников конкурса">
+  <meta name="keywords" content="ключевые, слова, сайт, тематика">
+  <meta name="author" content="2potato">
+  <title>Регистрация участника | Gamble Bot</title>
   {% comment %}
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   {% endcomment %}
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="{% static 'gamble/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'gamble/css/style.css' %}">
-  </style>
 </head>
 
 <body class="bg-light">
@@ -96,29 +103,6 @@
       </div>
     </div>
   </div>
-  {% comment %} <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (
-        Telegram.WebApp &&
-        Telegram.WebApp.initDataUnsafe &&
-        Telegram.WebApp.initDataUnsafe.user
-      ) {
-        const user = Telegram.WebApp.initDataUnsafe.user;
-        const telegramIdInput = document.getElementById("id_telegram_id");
-        const telegramUsernameInput = document.getElementById("id_telegram_username");
-
-        if (telegramIdInput) {
-          telegramIdInput.value = user.id;
-        }
-
-        if (telegramUsernameInput && user.username) {
-          telegramUsernameInput.value = user.username;
-        }
-      }
-    });
-  </script> {% endcomment %}
-
-  {% comment %} <script src="{% static 'gamble/js/main.js' %}"></script> {% endcomment %}
   <script src="{% static 'gamble/js/bootstrap.min.js' %}"></script>
 </body>
 

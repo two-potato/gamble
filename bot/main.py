@@ -60,7 +60,7 @@ async def get_random_user():
     """
     Получает случайного зарегистрированного пользователя из внешнего API.
     """
-    url = f"{API_LINK}/gamble/api/users/"
+    url = f"{API_LINK}/api/users/"
     logger.info(f"Fetching users from API: {url}")
     async with aiohttp.ClientSession() as session:
         try:
@@ -168,7 +168,7 @@ async def start_handler(message: types.Message):
         "is_subscribed": int(is_subscribed),
     }
     qs = urlencode(params)
-    web_app_url = f"{API_LINK}/gamble/register/?{qs}"
+    web_app_url = f"{API_LINK}/register/?{qs}"
     logger.info(f"WebApp URL: {web_app_url}")
 
     # Кнопка WebApp
@@ -191,7 +191,7 @@ async def start_handler(message: types.Message):
     # Асинхронно сохраняем данные пользователя на вашем API
     async with aiohttp.ClientSession() as session:
         try:
-            post_url = f"{API_LINK}/gamble/register/"
+            post_url = f"{API_LINK}/register/"
             logger.info(f"Posting user data to {post_url}: {params}")
             async with session.post(post_url, json=params, timeout=10) as resp:
                 if resp.status == 200:
