@@ -1,5 +1,5 @@
 import logging
-from django.views.generic import View, TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib import messages
@@ -21,6 +21,8 @@ class RegisterView(CreateView):
     form_class = RegistrationForm
     template_name = "index.html"
     success_url = reverse_lazy("gamble:success")
+    
+    
 
     def dispatch(self, request, *args, **kwargs):
         # 1) Проверяем, передал ли бот is_subscribed=1
@@ -49,6 +51,7 @@ class RegisterView(CreateView):
         return {
             "telegram_id": self.request.GET.get("telegram_id"),
             "telegram_username": self.request.GET.get("telegram_username", ""),
+            "is_subscribed": self.request.GET.get("is_subscribed", "0"),
         }
 
     def form_valid(self, form):

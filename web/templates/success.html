@@ -1,4 +1,6 @@
 {% extends "index.html" %}
+{% load static %}
+
 {% block content %}
 <div class="card shadow-sm rounded-lg">
   <div class="card-body p-3 p-md-4 text-center">
@@ -12,31 +14,43 @@
       ресторанов,
       чтобы получать полезные советы и консультации в реальном времени.
     </div>
-    <div class="d-grid gap-2 mb-3">
+    {% comment %} <div class="d-grid gap-2 mb-3">
       <button type="button" class="btn btn-success btn-lg py-3" id="openGroupBtn">
         🚀 Перейти в Telegram‑группу
       </button>
-    </div <!-- Примечание -->
+    </div> <!-- Исправлено: закрывающий тег </div> --> {% endcomment %}
+    <div class="d-grid gap-2 mb-3">
+      <!-- Кнопка-ссылка, которая в Телеграм-WebApp вызывает openLink -->
+      <a
+        href="https://t.me/restinternationall"
+        class="btn btn-success btn-lg py-3"
+        role="button"
+        onclick="if (window.Telegram?.WebApp?.openLink) { Telegram.WebApp.openLink(this.href); return false; }"
+      >
+        🎉 Перейти на канал
+      </a>
+    </div>
+    <!-- Примечание -->
     <p class="small text-muted mb-0">
       Если кнопка не работает, вы также можете перейти по ссылке:
-      <a href="https://t.me/test_fields" target="_blank" class="text-decoration-none">
-        t.me/test_fields
+      <a href="https://t.me/restinternationall" target="_blank" class="text-decoration-none">
+        t.me/restinternationall
       </a>
     </p>
   </div>
 </div>
-<script>
+{% comment %} <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Открываем ссылку через Telegram WebApp API, если доступно
     const btn = document.getElementById("openGroupBtn");
     btn.addEventListener("click", function () {
       const url = "https://t.me/test_fields";
-      if (Telegram.WebApp && Telegram.WebApp.openLink) {
+      if (window.Telegram?.WebApp?.openLink) {
         Telegram.WebApp.openLink(url);
       } else {
         window.open(url, "_blank");
       }
     });
   });
-</script>
+</script> {% endcomment %}
 {% endblock content %}

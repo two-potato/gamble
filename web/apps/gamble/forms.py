@@ -1,5 +1,5 @@
 from django import forms
-from .models import RegisteredUser
+from .models import RegisteredUser, Position
 from django.core.validators import RegexValidator
 
 
@@ -29,9 +29,8 @@ class RegistrationForm(forms.ModelForm):
             "rest_title": forms.TextInput(attrs={"class": "form-control"}),
             "position": forms.Select(
                 attrs={"class": "form-select"}
-            ),  # Для выпадающего списка
+            ),
             "phone": forms.TextInput(attrs={"class": "form-control"}),
-            # "email": forms.EmailInput(attrs={"class": "form-control"}),# Для чекбокса
         }
         help_texts = {
             "phone": "Введите номер в международном формате, например +1234567890",

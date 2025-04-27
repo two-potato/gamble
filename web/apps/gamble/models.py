@@ -29,6 +29,8 @@ class RegisteredUser(models.Model):
     telegram_username = models.CharField(
         max_length=255,
         verbose_name="Telegram Username",
+        null=True,
+        blank=True,
     )
     lucky_username = models.CharField(max_length=255, verbose_name="Lucky Username")
     rest_title = models.CharField(max_length=168, verbose_name="Название ресторана")
